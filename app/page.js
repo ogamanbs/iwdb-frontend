@@ -10,11 +10,12 @@ import { RiArrowRightLine, RiSearchLine } from '@remixicon/react';
 export default function Home() {
   const [search, setSearch] = useState('');
   const [isValidLink, setIsValidLink] = useState(false);
+  const [link, setLink] = useState('');
   return (
     <div className="min-h-screen w-full bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 transition delay-300 ease-in-out">
       <Menu />
       <div className="h-[7vh] w-full"></div>
-      <SearchBar search={search} setSearch={setSearch} isValidLink={isValidLink} setIsValidLink={setIsValidLink} />
+      <SearchBar search={search} setSearch={setSearch} isValidLink={isValidLink} setIsValidLink={setIsValidLink} link={link} setLink={setLink} />
       <div className="h-[10vh] w-full"></div>
       <div className="min-h-[76vh] w-full">
         {data.length > 0 && data.sort((a,b) => a.ranking - b.ranking).filter(website => website.url.includes(search) || website.title.includes(search)).length > 0 && <WebsitesList search={search} data={data} />}
@@ -23,7 +24,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-3 select-none">
               {isValidLink ? (
                 <>
-                  <h1 className="text-center text-2xl font-semibold text-neutral-400 dark:text-neutral-600">This link has not been processed yet.</h1>
+                  <h1 className="text-center text-2xl font-semibold text-neutral-400 dark:text-neutral-600">{link} has not been processed yet.</h1>
                   <h2 className="text-center text-4xl font-semibold text-neutral-400 dark:text-neutral-600">Please proceed to process this link</h2>
                 </>
               ):(

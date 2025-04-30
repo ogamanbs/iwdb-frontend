@@ -1,18 +1,27 @@
+'use client'
 import React from 'react';
 import {
     RiArrowRightLine,
     RiSearchLine
 } from '@remixicon/react';
+import { useRouter } from 'next/navigation';
 
-export default function SearchBar({isValidLink, search, setSearch, setIsValidLink}) {
+export default function SearchBar({isValidLink, search, setSearch, setIsValidLink, setLink}) {
+    const router = useRouter();
     const handleClick = () => {
-        // write you logic here
+        router.push(`/processing`);
     }
 
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
         let regex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
         setIsValidLink(regex.test(e.target.value));
+        if(isValidLink) {
+            setLink(e.target.value);
+            sessionStorage.setItem('link', e.target.value);
+        } else {
+            sessionStorage.removeItem('link');
+        }
     }
 
     return (
@@ -28,7 +37,7 @@ export default function SearchBar({isValidLink, search, setSearch, setIsValidLin
                     />
                 </div>
                 {isValidLink ? (
-                    <div onClick={handleClick}  className="w-[10%] h-full bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center cursor-pointer">
+                    <div onClick={handleClick} className="w-[10%] h-full bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center cursor-pointer">
                         <RiArrowRightLine height={20} width={20} />
                     </div>
                 ): (

@@ -1,11 +1,12 @@
 'use client'
-import React, { use } from 'react';
+import React, { use, useEffect } from 'react';
 import data from '@/components/LandingPageComponents/WebsiteData';
 import Menu from '@/components/LandingPageComponents/Menu';
 import Footer from '@/components/LandingPageComponents/Footer';
 import Details from '@/components/DetailsPageComponents/Details';
 import { RiArrowLeftLine } from '@remixicon/react';
 import { useRouter } from 'next/navigation';
+
 
 export default function DetailsPage({params}) {
     const p = use(params);
@@ -14,6 +15,7 @@ export default function DetailsPage({params}) {
     const handleReturnClick = () => {
         router.replace('/');
     }
+
     return (
         <div className="min-h-screen w-full bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 transition delay-300 ease-in-out">
             <Menu />
