@@ -25,7 +25,7 @@ export default function SearchBar({isValidLink, search, setSearch, setIsValidLin
     }
 
     return (
-        <div className="fixed h-[10vh] w-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900">
+        <div className="fixed h-[10vh] w-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 z-10">
             <div className="h-10 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] border-[0.5px] border-neutral-800 dark:border-neutral-500 rounded-[10px] flex overflow-hidden">
                 <div className="w-[90%] h-full flex items-center">
                     <input
