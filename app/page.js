@@ -1,10 +1,10 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '@/components/LandingPageComponents/Footer';
 import Menu from '@/components/LandingPageComponents/Menu';
 import SearchBar from '@/components/LandingPageComponents/SearchBar';
 import WebsitesList from '@/components/LandingPageComponents/WebsitesList';
-import data from '@/components/LandingPageComponents/WebsiteData';
+// import data from '@/components/LandingPageComponents/WebsiteData';
 import { RiArrowRightLine, RiCloseLine, RiMenuLine, RiSearchLine } from '@remixicon/react';
 import Link from 'next/link';
 
@@ -13,6 +13,24 @@ export default function Home() {
   const [isValidLink, setIsValidLink] = useState(false);
   const [link, setLink] = useState('');
   const [menu, setMenu] = useState(false);
+  const [data, setData] = useState([]);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const callAPI = async () => {
+      const response = await fetch('http://127.0.0.1:8000/api/items');
+      if(response.ok) {
+        const json_data = await response.json();
+        setData(json_data);
+        setMessage('successfully fetched data');
+      } else {
+        setMessage('error fetching data');
+      }
+      console.log(message);
+    }
+    callAPI();
+  }, [message]);
+
   return (
     <div className="relative min-h-screen w-full bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 transition delay-300 ease-in-out">
       <div className="fixed md:hidden h-[7vh] w-auto z-40 px-2 flex items-center justify-center">
