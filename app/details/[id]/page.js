@@ -1,19 +1,38 @@
 'use client'
 import React, { use, useState } from 'react';
-import data from '@/components/LandingPageComponents/WebsiteData';
 import Menu from '@/components/LandingPageComponents/Menu';
 import Footer from '@/components/LandingPageComponents/Footer';
 import Details from '@/components/DetailsPageComponents/Details';
 import { RiArrowLeftLine, RiCloseLine, RiMenuLine } from '@remixicon/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+// import data from '@/components/LandingPageComponents/WebsiteData';
 
 
 export default function DetailsPage({params}) {
-    const p = use(params);
     const router = useRouter();
+    const p = use(params);
     const [menu, setMenu] = useState(false);
-    const website = data.find((site) => site.id.toString() === p.id);
+
+    const [website, setWebsite] = useState([]);
+    const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        const callAPI = async () => {
+            const response = await fetch(`http://127.0.0.1:8000/api/items/id?${p.id}`);
+            if(response.ok) {
+                const json_website = await response.json();
+                setWebsite(json_website);
+                setMessage('successfully fetched data');
+            } else {
+                setMessage('error fetching data');
+            }
+            console.log(message);
+        }
+        callAPI();
+    }, [p, message]);
+
+    // const website = data.find((site) => site.id.toString() === p.id);
     const handleReturnClick = () => {
         router.replace('/');
     }

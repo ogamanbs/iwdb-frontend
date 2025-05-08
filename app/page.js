@@ -18,7 +18,7 @@ export default function Home() {
 
   useEffect(() => {
     const callAPI = async () => {
-      const response = await fetch('http://127.0.0.1:8000/api/items');
+      const response = await fetch('http://127.0.0.1:8000/api/items/');
       if(response.ok) {
         const json_data = await response.json();
         setData(json_data);
