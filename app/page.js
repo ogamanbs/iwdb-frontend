@@ -13,7 +13,7 @@ export default function Home() {
   const [isValidLink, setIsValidLink] = useState(false);
   const [link, setLink] = useState('');
   const [menu, setMenu] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{url:"wreter", rating:3}]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {

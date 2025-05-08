@@ -19,7 +19,7 @@ export default function DetailsPage({params}) {
 
     useEffect(() => {
         const callAPI = async () => {
-            const response = await fetch(`http://127.0.0.1:8000/api/items/id?${p.id}`);
+            const response = await fetch(`http://127.0.0.1:8000/api/items/${p.id}/`);
             if(response.ok) {
                 const json_website = await response.json();
                 setWebsite(json_website);

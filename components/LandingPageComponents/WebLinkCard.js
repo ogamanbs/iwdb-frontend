@@ -8,11 +8,11 @@ export default function WebLinkCard({website}) {
             <div className="dark:shadow-dark-xl h-64 border border-neutral-300 dark:border-neutral-600 rounded-[13px] p-2 hover:shadow-xl transition duration-300 ease-in-out cursor-pointer">
                 <div className="w-full h-[65%] bg-neutral-200 overflow-hidden rounded-[10px]">
                     <Image
-                        src={website.image}
+                        src={website.image || '/default.jpeg'}
                         alt={website.title}
                         width={1440}
                         height={1440}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover object-top"
                     />
                 </div>
                 <div className="p-1 flex flex-col gap-1 mt-1">
